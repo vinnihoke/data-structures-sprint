@@ -17,34 +17,37 @@ class Node:
 
 class RingBuffer:
     def __init__(self, capacity):
-        self.head = None
         self.capacity = capacity
+        self.storage = []
+        self.index = 0
 
     def append(self, item):
-        new_node = Node(item)
-        if not self.head:
-            self.head = new_node
+        # If storage is empty add one
+        if len(self.storage) == 0:
+            self.storage.append(item)
         else:
-            current = self.head
-            while current.get_next() is not None:
-                current = current.get_next()
-            current.set_next(new_node)
+            # If len of storage == capacity
+            if len(self.storage) == self.capacity:
+                # Check if the index is capacity
+                if self.index == self.capacity:
+                    # Zero out index
+                    self.index -= self.capacity
+                    # Add item into storage at index
+                    self.storage[self.index] = item
+                    # Increment index
+                    self.index += 1
+                # If index is not capacity
+                else:
+                    # Add item into storage at index
+                    self.storage[self.index] = item
+                    # Increment index
+                    self.index += 1
+            # Len of storage is not capacity
+            else:
+                # Add into storage
+                self.storage.append(item)
+                # No need to count index's yet.
 
     def get(self):
-
-
-buffer = RingBuffer(3)
-
-buffer.append("a")
-buffer.append("b")
-buffer.append("b")
-# print(buffer.head.get_value())
-# buffer.append("b")
-# print(buffer.head.get_value())
-# buffer.append("c")
-# print(buffer.head.get_value())
-# buffer.append("d")
-# print(buffer.head.get_value())
-# buffer.append("d")
-# print(buffer.head.get_value())
-# buffer.get()
+        # Return the array.
+        return self.storage
