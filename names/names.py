@@ -2,6 +2,7 @@ import time
 # import sys
 # sys.setrecursionlimit(11000)
 from sll import SLL
+from bst import BST
 
 
 start_time = time.time()
@@ -35,7 +36,7 @@ duplicates = []
 # runtime: 0.004992008209228516 seconds
 
 # ? Using list comprehension.
-duplicates = [name for name in names_1 if name in names_2]
+# duplicates = [name for name in names_1 if name in names_2]
 # This implementation should be O(n^2). It still needs to loop over each element and run a looped if check in names because of the "in" keyword.
 # runtime: 1.5957581996917725 seconds
 
@@ -50,6 +51,18 @@ duplicates = [name for name in names_1 if name in names_2]
 #         duplicates.append(name)
 # Worked but DAMN lol!!! O(c^n)
 # runtime: 32.25076985359192 seconds
+
+# ? Using BST
+# runtime: 0.17090082168579102 seconds
+# O(log n)
+bst = BST("")
+
+for name in names_1:
+    bst.insert(name)
+
+for name in names_2:
+    if bst.contains(name):
+        duplicates.append(name)
 
 end_time = time.time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
