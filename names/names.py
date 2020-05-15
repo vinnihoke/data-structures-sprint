@@ -25,27 +25,30 @@ f.close()
 #             duplicates.append(name_1)
 
 # ? Using set and intersect.
+duplicates = list(set(names_1).intersection(set(names_2)))
 # https://www.w3schools.com/python/ref_set_intersection.asp
 # Creates a list with a set from names_1. Intersection is the difference between the two lists, therefore all the duplicates. We pass in another set from names_2.
-# duplicates = list(set(names_1).intersection(set(names_2)))
 # Complexity is (n-1)*O(l) where l is max(len(s1),..,len(sn))
 # https://wiki.python.org/moin/TimeComplexity
+# runtime: 0.004992008209228516 seconds
 
 # ? Using list comprehension.
 # duplicates = [name for name in names_1 if name in names_2]
 # This implementation should be O(n^2). It still needs to loop over each element and run a looped if check in names because of the "in" keyword.
+# runtime: 1.5957581996917725 seconds
 
 # ? Using SLL.
-duplicates = []
-sll = SLL()
+# duplicates = []
+# sll = SLL()
 
-for name in names_1:
-    sll.add_to_tail(name)
+# for name in names_1:
+#     sll.add_to_tail(name)
 
-for name in names_2:
-    if sll.search(name):
-        duplicates.append(name)
-
+# for name in names_2:
+#     if sll.search(name):
+#         duplicates.append(name)
+# Worked but DAMN lol!!!
+# runtime: 32.25076985359192 seconds
 
 end_time = time.time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")

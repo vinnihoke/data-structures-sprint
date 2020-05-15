@@ -167,3 +167,4 @@ class SLL:
         # Iterate over the next values to check if we're at a valid node
         while current:
             # Return True if the current value matches the target
+            return True
